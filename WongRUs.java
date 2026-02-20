@@ -17,7 +17,7 @@ public class WongRUs {
         // using \t which is tab, equivalent to 4 chars
         String summary = """
 				---------------------------------------------------------------------------------------------
-				| Here is a summary of your purhcases at Wong \"R\" Us:\t\t\t\t\t\t\t\t\t\t|
+				| Here is a summary of your purchases at Wong \"R\" Us:\t\t\t\t\t\t\t\t\t\t|
 				|\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t|
 				| ITEM \t\t\t\t\t\t\t\t\t\tUNIT COST\t\tQUANTITY\t\tTOTAL COST\t\t|
 				| ----\t\t\t\t\t\t\t\t\t\t---------\t\t--------\t\t----------\t\t|
