@@ -1,12 +1,12 @@
-package assignment1;
+package ICS4U_Assignment1;
 import java.util.Scanner;
 public class WongRUs {
-
-		final private static Scanner sc  = new Scanner(System.in);
 	public static void main(String[] args) {
+		Scanner sc  = new Scanner(System.in);
+		int numOfToy = 0;
 
-		int numOfToy = 1;
 		do {
+			numOfToy++;
 			// prompt for toy name, any string could work
 			System.out.print("Please enter the name of the toy #" + numOfToy + ": ");
 			String toyName = sc.nextLine();
@@ -17,11 +17,11 @@ public class WongRUs {
 
 			// prompt for cost, must be a double
 			// must not use nextDouble(), must use nextLine() and parse it to a double, and must check if it's a positive double first
-			double cost = promptForPrice();
+			double price = promptForPrice();
 
 			// print the total price, which is quantity * cost
-			double totalPrice = quantity * cost;
-			System.out.printf("The cost for %d %s @ $%.2f each is $%.2f\n", quantity, toyName, cost, totalPrice);
+			double totalPrice = quantity * price;
+			System.out.printf("The cost for %d %s @ $%.2f each is $%.2f\n", quantity, toyName, price, totalPrice);
 
 			// ask continue or not, and keep asking until it's y or n <- must be do-while loop
 		}while(promptForContinuation() == 'y');
@@ -39,7 +39,7 @@ public class WongRUs {
 	private static boolean isValidateQuantity(String input) {
 		try {
 			int quantity = Integer.parseInt(input);
-			return quantity > 0;
+			return quantity > 0 && quantity <= 9999;
 		} catch (NumberFormatException e) {
 			return false;
 		}
@@ -47,11 +47,13 @@ public class WongRUs {
 
 	// keep asking for quantity until it's valid, then return the quantity as an integer
 	private static int promptForQuantity() {
+		Scanner sc  = new Scanner(System.in);
 		String input;
 		do {
-			System.out.print("How many of this toy are tyou buying?: ");
+			System.out.print("How many of this toy are you buying?: ");
 			input = sc.nextLine();
 		} while (!isValidateQuantity(input));
+		sc.close();
 		return Integer.parseInt(input);
 	}
 
@@ -59,7 +61,7 @@ public class WongRUs {
 	private static boolean isValidatePrice(String input) {
 		try {
 			double price = Double.parseDouble(input);
-			return price > 0;
+			return price > 0 && price <= 99999.99;
 		} catch (NumberFormatException e) {
 			return false;
 		}
@@ -67,20 +69,25 @@ public class WongRUs {
 
 	// keep asking for price until it's valid, then return the price as a double
 	private static double promptForPrice() {
+		Scanner sc  = new Scanner(System.in);
 		String input;
 		do {
-			System.out.print("Please enter the cost of this toy: ");
+			System.out.print("Please enter the cost of this toy: $");
 			input = sc.nextLine();
 		} while (!isValidatePrice(input));
-		return Double.parseDouble(input);
+		sc.close();
+		return Math.round(Double.parseDouble(input) * 100) / 100.0;
 	}
 
 	private static char promptForContinuation() {
+		Scanner sc  = new Scanner(System.in);
 		String input;
 		do {
 			System.out.print("Are you buying anymore toys? (y/n): ");
 			input = sc.nextLine().toLowerCase();
 		} while (!input.equals("y") && !input.equals("n"));
+
+		sc.close();
 		return input.charAt(0);
 	}
 	
