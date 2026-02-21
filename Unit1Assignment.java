@@ -1,4 +1,4 @@
-package assignment1;
+package ICS4U_Assignment1;
 
 import java.io.*;
 import java.util.Scanner;
@@ -8,6 +8,7 @@ public class Unit1Assignment {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int numOfToy = 0;
+        int amountOfToy = 0;
         double purchaseTotalCostBeforeTax = 0;
 
         int mostExpensiveItemQuantity = 0;
@@ -32,6 +33,7 @@ public class Unit1Assignment {
 
             // prompt for quantity, must be an integer
             int quantity = promptForQuantity(sc);
+            amountOfToy += quantity;
 
             // prompt for cost, must be a double
             // must not use nextDouble(), must use nextLine() and parse it to a double, and must check if it's a positive double first
@@ -61,8 +63,8 @@ public class Unit1Assignment {
         summary += "| ------------------------------------------------------------------------------------      |\n";
         summary += String.format("| Final Cost                                                                $%-15.2f|\n", purchaseTotalCostBeforeTax + tax);
         summary += String.format("|%-91s|\n", " ");
-        summary += String.format("| Total # of items bought: %-65d|\n", numOfToy);
-        summary += String.format("| Most expensive item: %d %s for $%-28.2f  |", mostExpensiveItemQuantity, mostExpensiveItemName, mostExpensiveItemTotalCost);
+        summary += String.format("| Total # of items bought: %-65d|\n", amountOfToy);
+        summary += String.format("| Most expensive item: %d %s for $%-26.2f  |\n", mostExpensiveItemQuantity, mostExpensiveItemName, mostExpensiveItemTotalCost);
         summary += "---------------------------------------------------------------------------------------------";
 
         printEndingMessage();
