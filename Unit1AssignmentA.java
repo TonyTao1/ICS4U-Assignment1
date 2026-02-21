@@ -110,7 +110,8 @@ public class Unit1AssignmentA {
     private static boolean isValidatePrice(String input) {
         try {
             double price = Double.parseDouble(input);
-            return price > 0 && price <= 99999.99;
+            price = Math.round(price * 100) / 100.0; // round to 2 decimal places
+            return price > 0 && price <= 99999.99; // validate the rounded price
         } catch (NumberFormatException e) {
             return false;
         }
