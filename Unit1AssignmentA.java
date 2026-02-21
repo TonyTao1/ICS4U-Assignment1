@@ -1,13 +1,14 @@
-package assginment1;
+package assignment1;
 
 import java.io.*;
 import java.util.Scanner;
 
-public class WongRUs {
+public class Unit1AssignmentA {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int numOfToy = 0;
+        int amountOfToy = 0;
         double purchaseTotalCostBeforeTax = 0;
 
         int mostExpensiveItemQuantity = 0;
@@ -15,13 +16,15 @@ public class WongRUs {
         double mostExpensiveItemTotalCost = Double.MIN_VALUE;
 
         // using \t which is tab, equivalent to 4 chars
-        String summary = """
-				---------------------------------------------------------------------------------------------
-				| Here is a summary of your purchases at Wong \"R\" Us:\t\t\t\t\t\t\t\t\t\t|
-				|\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t|
-				| ITEM \t\t\t\t\t\t\t\t\t\tUNIT COST\t\tQUANTITY\t\tTOTAL COST\t\t|
-				| ----\t\t\t\t\t\t\t\t\t\t---------\t\t--------\t\t----------\t\t|
-				""";
+        String summary = String.format("""
+        		---------------------------------------------------------------------------------------------
+        		| Here is a summary of your purchases at Wong "R" Us:                                       |
+        		|                                                                                           |
+        		| %-38s %12s %14s %17s %6s
+        		| %-38s %12s %14s %17s %6s
+        		""",
+        		"ITEM", "UNIT COST", "QUANTITY", "TOTAL COST", "|",
+        		"----", "---------", "--------", "----------", "|");
 
         do {
             numOfToy++;
@@ -29,8 +32,8 @@ public class WongRUs {
             String toyName = promptForToyName(sc, numOfToy);
 
             // prompt for quantity, must be an integer
-            // must not use nextInt(), must use nextLine() and parse it to an integer, and must check if it's a positive integer first
             int quantity = promptForQuantity(sc);
+            amountOfToy += quantity;
 
             // prompt for cost, must be a double
             // must not use nextDouble(), must use nextLine() and parse it to a double, and must check if it's a positive double first
@@ -60,8 +63,8 @@ public class WongRUs {
         summary += "| ------------------------------------------------------------------------------------      |\n";
         summary += String.format("| Final Cost                                                                $%-15.2f|\n", purchaseTotalCostBeforeTax + tax);
         summary += String.format("|%-91s|\n", " ");
-        summary += String.format("| Total # of items bought: %-65d|\n", numOfToy);
-        summary += String.format("| Most expensive item: %d %s for $%-28.2f|\n", mostExpensiveItemQuantity, mostExpensiveItemName, mostExpensiveItemTotalCost);
+        summary += String.format("| Total # of items bought: %-65d|\n", amountOfToy);
+        summary += String.format("| Most expensive item: %d %s for $%-26.2f  |\n", mostExpensiveItemQuantity, mostExpensiveItemName, mostExpensiveItemTotalCost);
         summary += "---------------------------------------------------------------------------------------------";
 
         printEndingMessage();
