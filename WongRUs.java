@@ -1,4 +1,4 @@
-package ICS4U_Assignment1;
+package assginment1;
 
 import java.io.*;
 import java.util.Scanner;
